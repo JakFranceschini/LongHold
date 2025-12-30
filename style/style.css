@@ -1,0 +1,99 @@
+#widget_principal {
+    background: #191925;
+}
+
+QScrollArea {
+    border: none;
+}
+
+#conteudo_scroll {
+    background: #191925;;
+}
+
+#titulo_barra_superior {
+    color: #b4b8fc;
+    font-size: 40px;
+}
+
+#subtitulo_barra_superior {
+    color: #a0a3c4;
+    font-size: 18px;
+}
+
+#cards {
+    background: #1e1f30;
+    border: 1px solid #595b7d;
+    border-radius: 25px;
+    min-width: 1150px;
+}
+
+#titulos_cards {
+    color: #b4b8fc;
+    font-size: 30px;
+}
+
+#subtitulos_cards {
+    color: #a0a3c4;
+    font-size: 16px;
+}
+
+#cards_secundarios {
+    border: 1px solid #595b7d;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#titulos_cards_secundarios {
+    color: #cab6fc;
+    font-size: 20px;
+}
+
+#valores_cards_secundarios {
+    color: #f5f5f7;
+    font-size: 30px;
+}
+
+#subvalores_cards_secundarios {
+    color: #a0a3c4;
+    font-size: 16px;
+}
+
+
+#botoes_ver_ativos{
+    border: 1px solid #595b7d;
+    color: #f5f5f7;
+    border-radius: 10px;
+    padding: 5px;
+    max-width: 120px;
+    font-size: 16px;
+}
+
+#botoes_ver_ativos:hover{
+    background: #414363;
+}
+
+#botoes_ver_ativos:pressed{
+    background: #71749b;
+}
+
+#nome_ativo {
+    color: #f5f5f7;
+    font-size: 20px;
+}
+
+#divisor_card {
+    background-color: #595b7d;
+    min-height: 1px;
+    max-height: 1px;
+    border: none;
+}
+
+#titulo_dados_ativos {
+    color: #cab6fc;
+    font-size: 16px;
+}
+
+#valor_dados_ativos {
+    color: #f5f5f7;
+    font-size: 16px;
+}
