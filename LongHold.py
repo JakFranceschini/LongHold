@@ -641,6 +641,21 @@ class MainWindow(QMainWindow):
         self.valor_card_2025_proventos.setObjectName("valores_cards_secundarios")
         layout_card_2025_proventos.addWidget(self.valor_card_2025_proventos)
 
+        card_2026_proventos = QFrame()
+        card_2026_proventos.setObjectName("cards_secundarios")
+        layout_card_2026_proventos = QVBoxLayout(card_2026_proventos)
+        layout_card_2026_proventos.setContentsMargins(0, 0, 0, 0)
+        layout_card_2026_proventos.setSpacing(10)
+        layout_area_valores_card_proventos.addWidget(card_2026_proventos, 2, 2)
+
+        titulo_card_2026_proventos = QLabel("2026")
+        titulo_card_2026_proventos.setObjectName("titulos_cards_secundarios")
+        layout_card_2026_proventos.addWidget(titulo_card_2026_proventos)
+
+        self.valor_card_2026_proventos = QLabel()
+        self.valor_card_2026_proventos.setObjectName("valores_cards_secundarios")
+        layout_card_2026_proventos.addWidget(self.valor_card_2026_proventos)
+
         self.carregar_dados_card_proventos()
 
         card_rentabilidades = QFrame()
@@ -789,6 +804,21 @@ class MainWindow(QMainWindow):
         self.valor_card_2025_rentabilidades = QLabel()
         self.valor_card_2025_rentabilidades.setObjectName("valores_cards_secundarios")
         layout_card_2025_rentabilidades.addWidget(self.valor_card_2025_rentabilidades)
+
+        card_2026_rentabilidades = QFrame()
+        card_2026_rentabilidades.setObjectName("cards_secundarios")
+        layout_card_2026_rentabilidades = QVBoxLayout(card_2026_rentabilidades)
+        layout_card_2026_rentabilidades.setContentsMargins(0, 0, 0, 0)
+        layout_card_2026_rentabilidades.setSpacing(10)
+        layout_area_valores_card_rentabilidades.addWidget(card_2026_rentabilidades, 2, 2)
+
+        titulo_card_2026_rentabilidades = QLabel("2026")
+        titulo_card_2026_rentabilidades.setObjectName("titulos_cards_secundarios")
+        layout_card_2026_rentabilidades.addWidget(titulo_card_2026_rentabilidades)
+
+        self.valor_card_2026_rentabilidades = QLabel()
+        self.valor_card_2026_rentabilidades.setObjectName("valores_cards_secundarios")
+        layout_card_2026_rentabilidades.addWidget(self.valor_card_2026_rentabilidades)
 
         self.carregar_dados_card_rentabilidades()
 
@@ -1439,42 +1469,64 @@ class MainWindow(QMainWindow):
     from PyQt6.QtWidgets import QFrame, QLabel, QVBoxLayout
 
     def carregar_dados_card_proventos(self):
-        total_recebido = float(self.proventos["total_recebido"].iloc[0].replace(",", "."))
-        total_ano_2019 = float(self.proventos["total_ano"].iloc[0].replace(",", "."))
-        total_ano_2020 = float(self.proventos["total_ano"].iloc[1].replace(",", "."))
-        total_ano_2021 = float(self.proventos["total_ano"].iloc[2].replace(",", "."))
-        total_ano_2022 = float(self.proventos["total_ano"].iloc[3].replace(",", "."))
-        total_ano_2023 = float(self.proventos["total_ano"].iloc[4].replace(",", "."))
-        total_ano_2024 = float(self.proventos["total_ano"].iloc[5].replace(",", "."))
-        total_ano_2025 = float(self.proventos["total_ano"].iloc[6].replace(",", "."))
+        total_recebido = float(
+            self.proventos["total_recebido"].iloc[0].replace(",", ".")
+        )
+        self.valor_card_total_recebido_proventos.setText(
+            self.formatar_brl(total_recebido)
+        )
 
-        self.valor_card_total_recebido_proventos.setText(self.formatar_brl(total_recebido))
-        self.valor_card_2019_proventos.setText(self.formatar_brl(total_ano_2019))
-        self.valor_card_2020_proventos.setText(self.formatar_brl(total_ano_2020))
-        self.valor_card_2021_proventos.setText(self.formatar_brl(total_ano_2021))
-        self.valor_card_2022_proventos.setText(self.formatar_brl(total_ano_2022))
-        self.valor_card_2023_proventos.setText(self.formatar_brl(total_ano_2023))
-        self.valor_card_2024_proventos.setText(self.formatar_brl(total_ano_2024))
-        self.valor_card_2025_proventos.setText(self.formatar_brl(total_ano_2025))
+        labels_por_ano = {
+            2019: self.valor_card_2019_proventos,
+            2020: self.valor_card_2020_proventos,
+            2021: self.valor_card_2021_proventos,
+            2022: self.valor_card_2022_proventos,
+            2023: self.valor_card_2023_proventos,
+            2024: self.valor_card_2024_proventos,
+            2025: self.valor_card_2025_proventos,
+            2026: self.valor_card_2026_proventos,
+        }
+
+        for index, (ano, label) in enumerate(labels_por_ano.items()):
+            valor = float(
+                self.proventos["total_ano"].iloc[index].replace(",", ".")
+            )
+            label.setText(self.formatar_brl(valor))
 
     def carregar_dados_card_rentabilidades(self):
-        rentabilidade_total = float(self.rentabilidades["rentabilidade_total"].iloc[0].replace(",", "."))
-        total_ano_2019 = float(self.rentabilidades["total_ano"].iloc[0].replace(",", "."))
-        total_ano_2020 = float(self.rentabilidades["total_ano"].iloc[1].replace(",", "."))
-        total_ano_2021 = float(self.rentabilidades["total_ano"].iloc[2].replace(",", "."))
-        total_ano_2022 = float(self.rentabilidades["total_ano"].iloc[3].replace(",", "."))
-        total_ano_2023 = float(self.rentabilidades["total_ano"].iloc[4].replace(",", "."))
-        total_ano_2024 = float(self.rentabilidades["total_ano"].iloc[5].replace(",", "."))
-        total_ano_2025 = float(self.rentabilidades["total_ano"].iloc[6].replace(",", "."))
 
-        self.valor_card_rentabilidade_total.setText(f"{rentabilidade_total}%")
-        self.valor_card_2019_rentabilidades.setText(f"{total_ano_2019}%")
-        self.valor_card_2020_rentabilidades.setText(f"{total_ano_2020}%")
-        self.valor_card_2021_rentabilidades.setText(f"{total_ano_2021}%")
-        self.valor_card_2022_rentabilidades.setText(f"{total_ano_2022}%")
-        self.valor_card_2023_rentabilidades.setText(f"{total_ano_2023}%")
-        self.valor_card_2024_rentabilidades.setText(f"{total_ano_2024}%")
-        self.valor_card_2025_rentabilidades.setText(f"{total_ano_2025}%")
+        def sinal_e_cor(valor):
+            sinal = "+" if valor > 0 else ""
+            cor = "#60b59b" if valor > 0 else "#e895a4" if valor < 0 else "#f5f5f7"
+            return sinal, cor
+
+        rentabilidade_total = float(
+            self.rentabilidades["rentabilidade_total"].iloc[0].replace(",", ".")
+        )
+
+        sinal, cor = sinal_e_cor(rentabilidade_total)
+        self.valor_card_rentabilidade_total.setText(f"{sinal}{rentabilidade_total}%")
+        self.valor_card_rentabilidade_total.setStyleSheet(f"color: {cor};")
+
+        labels_por_ano = {
+            2019: self.valor_card_2019_rentabilidades,
+            2020: self.valor_card_2020_rentabilidades,
+            2021: self.valor_card_2021_rentabilidades,
+            2022: self.valor_card_2022_rentabilidades,
+            2023: self.valor_card_2023_rentabilidades,
+            2024: self.valor_card_2024_rentabilidades,
+            2025: self.valor_card_2025_rentabilidades,
+            2026: self.valor_card_2026_rentabilidades,
+        }
+
+        for index, (ano, label) in enumerate(labels_por_ano.items()):
+            valor = float(
+                self.rentabilidades["total_ano"].iloc[index].replace(",", ".")
+            )
+
+            sinal, cor = sinal_e_cor(valor)
+            label.setText(f"{sinal}{valor}%")
+            label.setStyleSheet(f"color: {cor};")
 
     def carregar_dados_card_stocks(self):
         total_stocks = float(self.totais["total_stocks"].iloc[0].replace(",", "."))
