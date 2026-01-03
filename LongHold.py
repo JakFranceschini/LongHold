@@ -1,6 +1,7 @@
+import os
 import sys
 import pandas as pd
-from PyQt6.QtGui import QIcon
+from PyQt6.QtGui import QIcon, QPixmap
 from PyQt6.QtCore import QSettings, Qt
 from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QGridLayout, QHBoxLayout, QFrame, QPushButton, QScrollArea, QLabel, QSpacerItem, QSizePolicy
 
@@ -1637,18 +1638,31 @@ class MainWindow(QMainWindow):
         layout_card.setSpacing(10)
         
         header_frame = QFrame()
-        layout_header = QVBoxLayout(header_frame)
+        layout_header = QHBoxLayout(header_frame)
         layout_header.setContentsMargins(0, 0, 0, 0)
-        layout_header.setSpacing(5)
+        layout_header.setSpacing(15)
         layout_card.addWidget(header_frame)
         
-        ticker_label = QLabel(str(ativo['ticker']).upper())
+        logo_label = QLabel()
+        ticker_upper = str(ativo['ticker']).upper()
+        logo_label.setPixmap(QPixmap(f"img_ativos/{ticker_upper}.png").scaled(80, 80, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
+        layout_header.addWidget(logo_label)
+        
+        info_container = QWidget()
+        layout_info = QVBoxLayout(info_container)
+        layout_info.setContentsMargins(0, 0, 0, 0)
+        layout_info.setSpacing(5)
+        
+        ticker_label = QLabel(ticker_upper)
         ticker_label.setObjectName("titulos_cards")
-        layout_header.addWidget(ticker_label)
+        layout_info.addWidget(ticker_label)
         
         nome_label = QLabel(str(ativo['nome']))
         nome_label.setObjectName("nome_ativo")
-        layout_header.addWidget(nome_label)
+        layout_info.addWidget(nome_label)
+        
+        layout_header.addWidget(info_container)
+        layout_header.addStretch()
         
         linha = QFrame()
         linha.setFrameShape(QFrame.Shape.HLine)
